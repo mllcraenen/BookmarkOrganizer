@@ -63,3 +63,37 @@ thumbnail: https://...
 Runs on `marijncraenen.nl` VPS. Caddy serves the Quartz output at `bookmarks.marijncraenen.nl`.
 
 See `PLAN.md` for full implementation plan and task breakdown.
+
+## Quartz static site
+
+The vault is published as a static site via [Quartz](https://github.com/jackyzha0/quartz) (submodule at `quartz/`).
+
+### Build
+
+```bash
+./build.sh
+# Output: quartz/public/
+```
+
+### Caddy config
+
+Add this block to `/etc/caddy/Caddyfile` on the VPS:
+
+```
+bookmarks.marijncraenen.nl {
+    root * /home/admin/projects/BookmarkOrganizer/quartz/public
+    file_server
+}
+```
+
+Then reload: `sudo systemctl reload caddy`
+
+### Auto-rebuild on vault change
+
+```bash
+# Rebuild whenever a .md file changes in the vault
+sudo apt-get install -y inotify-tools
+while inotifywait -r -e modify,create,delete vault/; do ./build.sh; done
+```
+
+Or add a cron job: `*/15 * * * * cd /home/admin/projects/BookmarkOrganizer && ./build.sh`
