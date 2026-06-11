@@ -1,0 +1,12 @@
+{
+  "spellcheck": false,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "defaultViewMode": "preview",
+  "showLineNumber": false,
+  "foldHeading": true,
+  "foldIndent": true,
+  "showFrontmatter": false,
+  "tabSize": 2,
+  "vimMode": false
+}
