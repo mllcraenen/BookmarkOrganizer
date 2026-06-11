@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Optional
 
@@ -23,7 +23,7 @@ class BookmarkData(BaseModel):
 
     def model_post_init(self, __context: object) -> None:
         if self.saved_at is None:
-            object.__setattr__(self, "saved_at", datetime.utcnow())
+            object.__setattr__(self, "saved_at", datetime.now(timezone.utc))
 
 
 def find_existing(url: str, vault_path: str) -> Optional[Path]:
