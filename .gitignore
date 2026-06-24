@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Environment & secrets
+.env
+*.env
+cookies.json
+session_cookies.txt
+
+# Vault content (keep config and tag index, ignore generated notes)
+vault/**
+!vault/.obsidian/
+!vault/.obsidian/**
+!vault/README.md
+!vault/tags/
+!vault/tags/**
+
+# Quartz build output
+quartz/public/
+quartz/node_modules/
+
+# Docker
+docker/data/
+
+# OS
+.DS_Store
+Thumbs.db
